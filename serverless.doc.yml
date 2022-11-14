@@ -1,0 +1,58 @@
+endpoints:
+  create-film:
+    summary: Carga de ejemplo
+    description: Cargar información de ejemplo
+    tags:
+      - Examples
+    requestModels:
+      application/json: UploadExampleRequest
+    methodResponses:
+      - statusCode: 200
+        responseBody:
+          description: Respuesta cuando se ha creado/actualizado información sin error
+        responseModels:
+          application/json: UploadExampleSuccessResponse
+      - statusCode: 400
+        responseBody:
+          description: Error generado cuando no pasa alguna validación o se genera algun error no controlado
+        responseModels:
+          application/json: UploadExampleErrorResponse
+  show-film:
+    summary: Carga de ejemplo
+    description: Cargar información de ejemplo
+    tags:
+      - Examples
+    requestModels:
+      application/json: UploadExampleRequest
+    methodResponses:
+      - statusCode: 200
+        responseBody:
+          description: Respuesta cuando se ha creado/actualizado información sin error
+        responseModels:
+          application/json: UploadExampleSuccessResponse
+      - statusCode: 400
+        responseBody:
+          description: Error generado cuando no pasa alguna validación o se genera algun error no controlado
+        responseModels:
+          application/json: UploadExampleErrorResponse
+
+documentation:
+  version: '1.0.0'
+  title: 'Auth API'
+  description: 'This is auth API documentation'
+  servers:
+    - url: 'http://localhost:3000'
+  models:
+    - name: UploadExampleRequest
+      description: Request Upload Example
+      contentType: application/json
+      schema: ${file(swagger/models/example/upload-example/request.json)}
+      examples: ${file(swagger/models/example/upload-example/examples-request.yml)}
+    - name: UploadExampleSuccessResponse
+      description: Response Upload Example
+      contentType: application/json
+      schema: ${file(swagger/models/example/upload-example/success-response.json)}
+    - name: UploadExampleErrorResponse
+      description: Error Upload Example
+      contentType: application/json
+      schema: ${file(swagger/models/example/upload-example/error-response.json)}

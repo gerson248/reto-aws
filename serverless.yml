@@ -1,0 +1,76 @@
+service: reto-aws
+variablesResolutionMode: null
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  stage: ${opt:stage,'dev'}
+  region: ${opt:region,'us-east-2'}
+  stackName: reto-aws-service-${self:provider.stage}
+  tags:
+    Project: reto-aws-service
+    Environment: ${opt:stage,'dev'}
+  deploymentPrefix: reto-aws-serverless
+  iamRoleStatements:
+    - Effect: Allow
+      Action: 
+        - dynamodb:*
+      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/FilmsTable"
+  httpApi:
+    cors: true
+    disableDefaultEndpoint: false
+    metrics: true
+    useProviderTags: true
+  environment:
+    NODE_ENV: dev
+
+plugins:
+  - serverless-plugin-typescript 
+  - serverless-offline
+  - serverless-openapi-documentation
+
+package:
+  individually: true
+  include:
+    - config/.env.${self:provider.stage}
+
+functions:
+  create-film:
+    handler: app/handler.create
+    timeout: 240
+    events:
+      - http:
+          path: v3/films
+          method: post
+          documentation: ${file(serverless.doc.yml):endpoints.create-film}
+  show-film:
+    handler: app/handler.show
+    timeout: 240
+    events:
+      - http:
+          path: v3/films/{id}
+          method: get
+          documentation: ${file(serverless.doc.yml):endpoints.create-film}
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+    lambdaPort: 4001
+  dotenv:
+    path: config/.env.${self:provider.stage}
+  documentation: ${file(serverless.doc.yml):documentation}
+
+resources:
+  Resources:
+    TaskTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: FilmsTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH

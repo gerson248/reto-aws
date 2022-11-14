@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Film examples - Success Response",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "number"
+    },
+    "message": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

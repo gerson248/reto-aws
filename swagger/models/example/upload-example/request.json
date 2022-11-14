@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Film - Request",
+  "type": "object",
+  "required": [
+    "datos"
+  ],
+  "properties": {
+    "datos": {
+      "type": "object",
+      "items": {
+        "required": [
+          "title",
+          "opening_crawl",
+          "episode_id",
+          "url",
+          "vehicles"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "A New Hope 4"
+          },
+          "opening_crawl": {
+            "type": "string",
+            "example": "It is a period of civil war 4."
+          },
+          "episode_id": {
+            "type": "string",
+            "example": 4
+          },
+          "url": {
+            "type": "string",
+            "example": "https://swapi.py4e.com/api/films/2/"
+          },
+          "vehicles": {
+            "type": "array",
+            "example": ["vehiculo 1, vehiculo 2"]
+          }
+        }
+      }
+    }
+  }
+}

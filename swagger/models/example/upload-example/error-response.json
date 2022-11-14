@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Film - Error Response",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "number"
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}

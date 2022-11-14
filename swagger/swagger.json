@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.0",
+  "components": {
+    "schemas": {
+      "UploadExampleRequest": {
+        "title": "Film - Request",
+        "type": "object",
+        "required": [
+          "datos"
+        ],
+        "properties": {
+          "datos": {
+            "type": "object",
+            "items": {
+              "required": [
+                "title",
+                "opening_crawl",
+                "episode_id",
+                "url",
+                "vehicles"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "A New Hope 4"
+                },
+                "opening_crawl": {
+                  "type": "string",
+                  "example": "It is a period of civil war 4."
+                },
+                "episode_id": {
+                  "type": "string",
+                  "example": 4
+                },
+                "url": {
+                  "type": "string",
+                  "example": "https://swapi.py4e.com/api/films/2/"
+                },
+                "vehicles": {
+                  "type": "array",
+                  "example": [
+                    "vehiculo 1, vehiculo 2"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "UploadExampleSuccessResponse": {
+        "title": "Film examples - Success Response",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UploadExampleErrorResponse": {
+        "title": "Film - Error Response",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {}
+  },
+  "info": {
+    "title": "Auth API",
+    "description": "This is auth API documentation",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v3/films": {
+      "post": {
+        "operationId": "create-film",
+        "summary": "Carga de ejemplo",
+        "description": "Cargar información de ejemplo",
+        "tags": [
+          "Examples"
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta cuando se ha creado/actualizado información sin error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadExampleSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error generado cuando no pasa alguna validación o se genera algun error no controlado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadExampleErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/films/{id}": {
+      "get": {
+        "operationId": "show-film",
+        "summary": "Carga de ejemplo",
+        "description": "Cargar información de ejemplo",
+        "tags": [
+          "Examples"
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta cuando se ha creado/actualizado información sin error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadExampleSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error generado cuando no pasa alguna validación o se genera algun error no controlado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadExampleErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

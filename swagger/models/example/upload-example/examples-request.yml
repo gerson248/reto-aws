@@ -1,0 +1,14 @@
+Default:
+  value:
+    title: A New Hope 4
+    opening_crawl: It is a period of civil war 4.
+    episode_id: 4
+    url: https://swapi.py4e.com/api/films/2/
+    vehicles: ["vehiculo 1, vehiculo 2"]
+Test:
+  value:
+    title: A New Hope 4
+    opening_crawl: It is a period of civil war 4.
+    episode_id: 4
+    url: https://swapi.py4e.com/api/films/2/
+    vehicles: ["vehiculo 1, vehiculo 2"]
